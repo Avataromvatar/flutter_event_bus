@@ -2,6 +2,7 @@ name: flutter_event_bus
 description: A new Flutter package project.
 version: 1.0.0
 publish_to: none
+repository: https://github.com/Avataromvatar/flutter_event_bus
 homepage:
 
 environment:
