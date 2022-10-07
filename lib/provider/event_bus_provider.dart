@@ -33,9 +33,11 @@ class BasicEventProvider with ChangeNotifier implements EventProvider {
   }
 
   @override
-  Stream<EventDTO<T>>? listenEventDTO<T>({String? eventName, bool repeatLastEvent = false, String? prefix}) {
+  Stream<EventDTO<T>>? listenEventDTO<T>(
+      {String? eventName, bool repeatLastEvent = false, String? prefix, Duration? duration}) {
     bool needNotify = !_controller.contain<T>(eventName);
-    var ret = _controller.listenEventDTO<T>(eventName: eventName, repeatLastEvent: repeatLastEvent, prefix: prefix);
+    var ret = _controller.listenEventDTO<T>(
+        eventName: eventName, repeatLastEvent: repeatLastEvent, prefix: prefix, duration: duration);
     if (needNotify) {
       WidgetsBinding.instance.addPostFrameCallback(
         (timeStamp) => notifyListeners(),
@@ -45,9 +47,10 @@ class BasicEventProvider with ChangeNotifier implements EventProvider {
   }
 
   @override
-  Stream<T>? listenEvent<T>({String? eventName, bool repeatLastEvent = false, String? prefix}) {
+  Stream<T>? listenEvent<T>({String? eventName, bool repeatLastEvent = false, String? prefix, Duration? duration}) {
     bool needNotify = !_controller.contain<T>(eventName);
-    var ret = _controller.listenEvent<T>(eventName: eventName, repeatLastEvent: repeatLastEvent, prefix: prefix);
+    var ret = _controller.listenEvent<T>(
+        eventName: eventName, repeatLastEvent: repeatLastEvent, prefix: prefix, duration: duration);
     if (needNotify) {
       WidgetsBinding.instance.addPostFrameCallback(
         (timeStamp) => notifyListeners(),
@@ -57,7 +60,7 @@ class BasicEventProvider with ChangeNotifier implements EventProvider {
   }
 
   @override
-  bool repeat<T>({String? eventName, String? uuid, String? prefix}) {
-    return _controller.repeat(eventName: eventName, uuid: uuid, prefix: prefix);
+  bool repeat<T>({String? eventName, String? uuid, String? prefix, Duration? duration}) {
+    return _controller.repeat(eventName: eventName, uuid: uuid, prefix: prefix, duration: duration);
   }
 }
