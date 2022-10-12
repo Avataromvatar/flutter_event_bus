@@ -28,9 +28,15 @@ class BasicEventProvider with ChangeNotifier implements EventProvider {
   }
 
   @override
-  bool send<T>(T event, {String? eventName, String? uuid, String? prefix, Duration? afterTime, Stream? afterEvent}) {
+  bool send<T>(T event,
+      {String? eventName, String? uuid, String? prefix, Duration? afterTime, Stream? afterEvent, Future? afterThis}) {
     return _controller.send<T>(event,
-        eventName: eventName, uuid: uuid, prefix: prefix, afterEvent: afterEvent, afterTime: afterTime);
+        eventName: eventName,
+        uuid: uuid,
+        prefix: prefix,
+        afterEvent: afterEvent,
+        afterTime: afterTime,
+        afterThis: afterThis);
   }
 
   @override
